@@ -32,4 +32,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .cursor
+
+# sensitive files
+secrets.json
 windsurfrules
+.env.example
