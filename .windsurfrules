@@ -1,0 +1,169 @@
+
+# Coding pattern preferences
+
+– Always prefer simple solutions.
+– Avoid duplication of code whenever possible, which means checking for other areas of the codebase that might already have similar code and functionality.
+- While building a new component or updating an exisitng component, always check for any repeated components in other parts of code. If there is a major similarity between the components and if it is a custom made component (not directly imported from library) then extract out the component and reuse it.
+– Write code that takes into account the different environments: dev, test, staging and prod.
+– You are careful to only make changes that are requested or you are confident are well understood and related to the change being requested. Do not make any changes if unsure.
+– When fixing an issue or bug, do not introduce a new pattern or technology without first exhausting all options for the existing implementation. Confirm and ask before implementing a new technology.
+– Keep the codebase very clean and organized.
+– Avoid writing scripts in files if possible, especially if the script is likely only to be run once.
+– Avoid having files over 200–300 lines of code. Refactor at that point.
+– Mocking data is only needed for tests, never mock data for dev or prod.
+– Never add stubbing or fake data patterns to code that affects the dev or prod environments.
+– Never overwrite my .env file without first asking and confirming.
+- Always use latest packages.
+- Avoid hardcoding of parameter values and everything should be defined in constants file instead.
+- Optimise for state changes in react components.
+- Dont create components longer than 200 lines.
+- Use 4 space indent in all Javascript and TypeScript files.
+- Use arrow function based approach wherever possible instead of defining functions. Example, const a = () => {} instead of function a() {}
+- If in any component, an image as to be used, the image (png, jpg, svg or any extension) file has to be saved in public directory and not as a function or const in the same component file.
+- Use double quotes wherever possible instead of single quotes. Example, in the import statements, while declaring CSS classnames, using strings anywhere, etc.
+- Don't add trailing commas anywhere. For example, after the last item in an array, last propoerty in an object, etc.
+- Try using as many Next JS features as possible instead of native html, css and React features. For example, use Link instead of a href tag, etc.
+
+
+# Technical stack
+
+Do not suggest any tech stack outside of this. Only limit your implementations to this stack. If the solution cannot be achieved by this stack. Please provide the options and implement only when I confirm.
+
+– Python for the backend  
+– Next JS for the frontend  
+- Always use Typescript instead of Javascript.
+- React flow as a library for graph based use cases.
+- tailwind + shadcn for styling
+
+# Next js Typescript best practices
+
+You are an expert full-stack developer proficient in TypeScript, React, Next.js, and modern UI/UX frameworks (e.g., Tailwind CSS, Shadcn UI, Radix UI). Your task is to produce the most optimized and maintainable Next.js code, following best practices and adhering to the principles of clean code and robust architecture.
+
+    ### Objective
+    - Create a Next.js solution that is not only functional but also adheres to the best practices in performance, security, and maintainability.
+
+    ### Code Style and Structure
+    - Write concise, technical TypeScript code with accurate examples.
+    - Use functional and declarative programming patterns; avoid classes.
+    - Favor iteration and modularization over code duplication.
+    - Use descriptive variable names with auxiliary verbs (e.g., `isLoading`, `hasError`).
+    - Structure files with exported components, subcomponents, helpers, static content, and types.
+    - Use lowercase with dashes for directory names (e.g., `components/auth-wizard`).
+
+    ### Optimization and Best Practices
+    - Minimize the use of `'use client'`, `useEffect`, and `setState`; favor React Server Components (RSC) and Next.js SSR features.
+    - Implement dynamic imports for code splitting and optimization.
+    - Use responsive design with a mobile-first approach.
+    - Optimize images: use WebP format, include size data, implement lazy loading.
+
+    ### Error Handling and Validation
+    - Prioritize error handling and edge cases:
+      - Use early returns for error conditions.
+      - Implement guard clauses to handle preconditions and invalid states early.
+      - Use custom error types for consistent error handling.
+
+    ### UI and Styling
+    - Use modern UI frameworks (e.g., Tailwind CSS, Shadcn UI, Radix UI) for styling.
+    - Implement consistent design and responsive patterns across platforms.
+
+    ### State Management and Data Fetching
+    - Use modern state management solutions (e.g., Zustand, TanStack React Query) to handle global state and data fetching.
+    - Implement validation using Zod for schema validation.
+
+    ### Security and Performance
+    - Implement proper error handling, user input validation, and secure coding practices.
+    - Follow performance optimization techniques, such as reducing load times and improving rendering efficiency.
+
+    ### Testing and Documentation
+    - Write unit tests for components using Jest and React Testing Library.
+    - Provide clear and concise comments for complex logic.
+    - Use JSDoc comments for functions and components to improve IDE intellisense.
+
+    ### Methodology
+    1. **System 2 Thinking**: Approach the problem with analytical rigor. Break down the requirements into smaller, manageable parts and thoroughly consider each step before implementation.
+    2. **Tree of Thoughts**: Evaluate multiple possible solutions and their consequences. Use a structured approach to explore different paths and select the optimal one.
+    3. **Iterative Refinement**: Before finalizing the code, consider improvements, edge cases, and optimizations. Iterate through potential enhancements to ensure the final solution is robust.
+
+    **Process**:
+    1. **Deep Dive Analysis**: Begin by conducting a thorough analysis of the task at hand, considering the technical requirements and constraints.
+    2. **Planning**: Develop a clear plan that outlines the architectural structure and flow of the solution, using <PLANNING> tags if necessary.
+    3. **Implementation**: Implement the solution step-by-step, ensuring that each part adheres to the specified best practices.
+    4. **Review and Optimize**: Perform a review of the code, looking for areas of potential optimization and improvement.
+    5. **Finalization**: Finalize the code by ensuring it meets all requirements, is secure, and is performant.
+
+
+
+
+# Ideal structure for the next js app
+- Whenever adding/editing a file, follow the below project structure
+my-next-app/
+├── public/                             # Static assets (images, fonts, etc.)
+├── app/                                # App Router entry point (layouts, pages, routes)
+│   ├── api/                            # API routes
+│   ├── dashboard/                      # Example route (app/dashboard)
+│       ├── _complex_components         # Example route having its own complex components (complex components has its own functionality like API calls)
+│           ├── api/                    # Single location containing all code for interacting with backend, other services, etc.
+│               ├── index.ts            # Example file handling API requests
+│           ├── components/             # Individual components used in the mentioned route
+│               ├── component_1/        # Example component directory
+│                   ├── component_1.tsx # Component TSX element
+│               ├── component_2/        # Example component directory
+│                   ├── component_2.tsx # Component TSX element
+│           ├── hooks/                  # All the hooks that are utilized in the components in one place
+│               ├── index.ts            # Example file
+│       ├── page.tsx                    # Dashboard route having its page
+│   ├── layout.tsx                      # Root layout (includes ThemeProvider, CssBaseline)
+│   └── page.tsx                        # Home page
+│
+├── components/                     # Reusable Components
+│   ├── api/                        # Single location containing all code for interacting with backend, other services, etc.
+|       |── api/                    # Single location containing all code for interacting with backend, other services, etc.
+│           ├── index.ts            # Example file handling API requests
+│       ├── components/             # Individual components used in the mentioned route
+│           ├── component_1/        # Example component directory
+│               ├── component_1.tsx # Component TSX element
+│           ├── component_2/        # Example component directory
+│               ├── component_2.tsx # Component TSX element
+│       ├── hooks/                  # All the hooks that are utilized in the components in one place
+│           ├── index.ts            # Example file
+│       
+│
+├── features/                  # Feature-based modules
+│   └── auth/                  # Example: auth logic and UI
+│       ├── components/
+│       ├── hooks/
+│       └── services/
+│
+├── lib/                       # Reusable logic / helpers (e.g., formatDate, debounce)
+├── styles/                    # Global styles (e.g., font imports, base overrides)
+│   ├── theme.ts               # Custom theme config
+│   └── globals.css            # Optional: global CSS overrides (e.g., scrollbars, fonts)
+├── constants/                 # Constants (roles, routes, enums)
+├── utils/                     # Parent folder containing all utils
+|   |── supabase/              # Folder containing all utils related to supabase
+|       |── component_1.ts     # util file
+├── config/                    # App-level config (env, API base URLs, etc.)
+├── types/                     # Global types and interfaces
+├── middleware.ts              # Next.js middleware
+└── @core/                     # Core services / logic
+    ├── api/                  # API clients (fetchers, axios)
+    ├── auth/                 # Auth logic
+    ├── store/                # Global state (e.g., Zustand, Redux if used)
+    └── logger.ts
+├── .env.local                     # Environment variables
+├── next.config.js                 # Next.js configuration
+├── tsconfig.json                  # TypeScript config and aliases
+├── package.json
+└── README.md
+
+
+# Coding workflow preferences
+
+– Focus on the areas of code relevant to the task.
+– Do not touch code that is unrelated to the task.
+- Do not assume requirements and add functionality. Strictly limit to what has been asked.
+– Write thorough tests for all major functionality.
+– Avoid making major changes to the patterns and architecture of how a feature works, after it has shown to work well, unless explicitly instructed.
+– Always think about what other methods and areas of code might be affected by code changes.
+- Whenever it is required to add a new package or module, always add to the dependency. Do not do npm install or pip install into the terminal without adding to package.json or requirements.txt
+
